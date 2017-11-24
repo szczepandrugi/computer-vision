@@ -1,0 +1,19 @@
+{
+  "name": "opencv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "watch": {
+    "python": "img/img.jpg"
+  },
+  "scripts": {
+    "start": "npm run watch",
+    "python": "python start.py",
+    "watch": "npm-watch"
+},
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "npm-watch": "^0.3.0"
+  }
+}
