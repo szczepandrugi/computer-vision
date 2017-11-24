@@ -5,3 +5,4 @@ Install:
 4. install pip by get-pip.py (google)
 5. pip install -U numpy
 6. pywin32-221.win-amd64-py2.7.exe || pywin32-221.win32-py2.7.exe for mouse move via Python
+7. python -mpip install -U pip && python -mpip install -U matplotlib for find EDGES

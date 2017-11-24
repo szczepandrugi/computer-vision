@@ -52,7 +52,10 @@ while(True):
             cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
 
     # Display the resulting frame
+    ret, thresh = cv2.threshold(frame, 10, 255, cv2.THRESH_OTSU)
+    print ret
     cv2.imshow('frame',frame)
+    # cv2.imshow('frame',frame)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
