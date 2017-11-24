@@ -1,3 +1,4 @@
+Install:
 1. python-2.7.14.msi || python-3.6.3.exe and add C:\Python27 to env PATH
 2. opencv-3.3.1-vc14.exe
 3. setx -m OPENCV_DIR  %USERPROFILE%\Downloads\opencv\build\x64\vc14
