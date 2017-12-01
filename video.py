@@ -32,27 +32,52 @@ while(True):
         roi_color = frame[y:y+h, x:x+w]
         eyes = eye_cascade.detectMultiScale(roi_gray)
 
-        # find denter of face rect
+        # find center of face rect
         nx = x + (w/2)
         ny = y + (y/2)
-
         procx = nx/width*100
         procy = ny/height*100
-        mouseX = int(round(screenW*procx/100))
-        mouseY = int(round(screenH*procy/100))
+
+        xD = 0
+        yD = 0
+
         # mouse move
+        if procx > 50:
+             # print 'right'
+             xD = 1
+
+        if procx < 50:
+             # print 'left'
+             xD = -1
+
+        if procy > 50:
+             # print 'down'
+             yD = 1
+
+        if procy < 50:
+             # print 'up'
+             yD = -1
+
+        x0, y0 = win32api.GetCursorPos()
+
+        mouseX = x0 + xD*10
+        mouseY = y0 + yD*10
+
+        mouseX = int(round(mouseX))
+        mouseY = int(round(mouseY))
+
         win32api.SetCursorPos((mouseX,mouseY))
 
-        msg = "%s, %s" % (nx,ny)
-        cv2.putText(frame, msg, (x+w+4,y), font, .4, (244,255,200), 1, cv2.LINE_AA)
-        msg = "%s%%, %s%%" % (int(round(procx)),int(round(procy)))
-        cv2.putText(frame, msg, (x+w+4,y+16), font, .4, (244,255,200), 1, cv2.LINE_AA)
+        # msg = "%s, %s" % (nx,ny)
+        # cv2.putText(frame, msg, (x+w+4,y), font, .4, (244,255,200), 1, cv2.LINE_AA)
+        # msg = "%s%%, %s%%" % (int(round(procx)),int(round(procy)))
+        # cv2.putText(frame, msg, (x+w+4,y+16), font, .4, (244,255,200), 1, cv2.LINE_AA)
 
-        for (ex,ey,ew,eh) in eyes:
-            cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
+        # for (ex,ey,ew,eh) in eyes:
+        #     cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
 
     # Display the resulting frame
-    cv2.imshow('frame',frame)
+    # cv2.imshow('frame',frame)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
